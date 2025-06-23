@@ -24,11 +24,11 @@ export function expandMarkdown(tree: ParseTree): Promise<ParseTree> {
 }
 
 /**
- * Converts markdown text to HTML.
- * @param text the markdown text to convert
- * @param options rendering options
- * @returns the HTML representation of the markdown
+ * Renders markdown text to HTML.
+ * @param markdownText the markdown text to render
+ * @returns HTML representation of the markdown
  */
-export function markdownToHtml(text: string, options?: any): Promise<string> {
-  return syscall("markdown.markdownToHtml", text, options);
+export function markdownToHtml(markdownText: string): Promise<string> {
+  return syscall("markdown.markdownToHtml", markdownText);
 }
+
