@@ -79,6 +79,10 @@ export function Panel({
           });
           break;
         }
+        case "block-focus":
+          // Dispatch block-focus messages as events so they can be handled by the block commands
+          editor.dispatchAppEvent("editor:block-focus", data);
+          break;
       }
     };
     globalThis.addEventListener("message", messageListener);

@@ -68,6 +68,7 @@ export type AppEvent =
   | "editor:documentSaving"
   | "editor:documentSaved"
   | "editor:modeswitch"
+  | "editor:block-focus"
   | "plugs:loaded"
   | "cron:secondPassed"
   | "hooks:renderTopWidgets"

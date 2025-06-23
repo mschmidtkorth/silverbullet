@@ -379,3 +379,82 @@ functions:
       name: "Document: Delete"
       requireMode: rw
       requireEditor: notpage
+
+  # Block Focus Commands
+  blockZoomIn:
+    path: "./block_commands.ts:blockZoomIn"
+    command:
+      name: "Block: Zoom In"
+      key: "Cmd-."
+      mac: "Cmd-."
+      requireEditor: page
+
+  blockPinCurrent:
+    path: "./block_commands.ts:blockPinCurrent"
+    command:
+      name: "Block: Pin Current"
+      key: "Cmd-Shift-p"
+      mac: "Cmd-Shift-p"
+      requireMode: rw
+      requireEditor: page
+
+  blockNavigateBack:
+    path: "./block_commands.ts:blockNavigateBack"
+    command:
+      name: "Block: Navigate Back"
+      key: "Alt-["
+      requireEditor: page
+
+  blockNavigateForward:
+    path: "./block_commands.ts:blockNavigateForward"
+    command:
+      name: "Block: Navigate Forward"
+      key: "Alt-]"
+      requireEditor: page
+
+  blockShowPinned:
+    path: "./block_commands.ts:blockShowPinned"
+    command:
+      name: "Block: Show Pinned"
+      key: "Cmd-Shift-b"
+      mac: "Cmd-Shift-b"
+      requireEditor: page
+
+  blockCloseSidebar:
+    path: "./block_commands.ts:blockCloseSidebar"
+    command:
+      name: "Block: Close Sidebar"
+      key: "Escape"
+      requireEditor: page
+
+  blockToggleEditMode:
+    path: "./block_commands.ts:blockToggleEditMode"
+    command:
+      name: "Block: Toggle Edit Mode"
+      key: "Ctrl-e"
+      mac: "Cmd-e"
+      requireEditor: page
+
+  blockClearPinned:
+    path: "./block_commands.ts:blockClearPinned"
+    command:
+      name: "Block: Clear All Pinned"
+      requireEditor: page
+
+  blockClearHistory:
+    path: "./block_commands.ts:blockClearHistory"
+    command:
+      name: "Block: Clear Navigation History"
+      requireEditor: page
+
+  blockFocusInfo:
+    path: "./block_commands.ts:blockFocusInfo"
+    command:
+      name: "Block: Show Focus Info"
+      requireEditor: page
+
+  # Event handler for block-focus messages from iframes
+  handleBlockFocusEvent:
+    path: "./block_commands.ts:handleBlockFocusEvent"
+    events:
+      - "editor:block-focus"

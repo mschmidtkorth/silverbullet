@@ -28,16 +28,18 @@ window.addEventListener("message", (message) => {
   const data = message.data;
   switch (data.type) {
     case "html":
-      document.body.innerHTML = data.html;
-      if(data.theme) {
-        document.getElementsByTagName("html")[0].setAttribute("data-theme", data.theme);
-      }
+      // Execute script BEFORE setting innerHTML to ensure functions are available
       if (data.script) {
         try {
           eval(data.script);
         } catch (e) {
           console.error("Error evaling script", e);
         }
+      }
+      // ...now set the HTML content after functions are defined
+      document.body.innerHTML = data.html;
+      if(data.theme) {
+        document.getElementsByTagName("html")[0].setAttribute("data-theme", data.theme);
       }
       setTimeout(() => {
         oldHeight = undefined;
@@ -71,7 +73,11 @@ window.addEventListener("message", (message) => {
 });
 
 function api(obj) {
+  console.log("DEBUG: api() called with:", obj);
+  console.log("DEBUG: window.parent:", window.parent);
+  console.log("DEBUG: posting message to parent");
   window.parent.postMessage(obj, "*");
+  console.log("DEBUG: postMessage completed");
 }
 
 function updateHeight() {
@@ -97,7 +103,7 @@ function loadJsByUrl(url,integrity=null) {
     script.integrity=integrity;
     script.crossOrigin="anonymous"; //for some weird reason this attribute is case sensitive when used in JS
   }
-  
+
 
   return new Promise((resolve) => {
     script.onload = resolve;

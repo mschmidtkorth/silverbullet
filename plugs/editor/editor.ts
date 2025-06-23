@@ -12,6 +12,15 @@ export async function setEditorMode() {
   if (await clientStore.get("darkMode")) {
     await editor.setUiOption("darkMode", true);
   }
+  
+  // Initialize the TransientBlockViewManager singleton to ensure persisted state is loaded
+  try {
+    const { TransientBlockViewManager } = await import("./block_view_manager.ts");
+    await TransientBlockViewManager.getInstance();
+    console.log("DEBUG: TransientBlockViewManager initialized on editor startup");
+  } catch (error) {
+    console.error("Failed to initialize TransientBlockViewManager:", error);
+  }
 }
 
 export function openCommandPalette() {
